@@ -22,6 +22,7 @@ run::proc(){
 
 terminate::proc(){
     glfw.Terminate()
+    free(util.getSingleton(system.Renderer))
 }
 
 addRunningSystem::proc($T : typeid){
