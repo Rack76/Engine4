@@ -1,13 +1,9 @@
 package core
 
-import "window_manager"
 import "util/ecs"
 import "util"
 import "../system"
 import "vendor:glfw"
-import "vendor:OpenGL"
-import "core:c"
-import "core:fmt"
 
 init::proc(){
     glfw.Init()
