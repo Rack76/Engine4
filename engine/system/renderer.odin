@@ -7,7 +7,6 @@ import "../core/asset_manager"
 import "vendor:OpenGL"
 import "vendor:glfw"
 import "core:c"
-import "core:fmt"
 
 Renderer::struct{
     using system : ecs.System,
