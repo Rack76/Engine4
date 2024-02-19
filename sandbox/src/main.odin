@@ -1,6 +1,6 @@
 package main
 
-import "engine:core"
+import "../../engine/core"
 
 main :: proc() {
 	core.init()
