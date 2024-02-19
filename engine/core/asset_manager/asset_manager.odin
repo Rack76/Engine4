@@ -21,7 +21,7 @@ program : u32
 loadMesh::proc(){
     OpenGL.GenBuffers(1, &vbo)
     OpenGL.BindBuffer(OpenGL.ARRAY_BUFFER, vbo)
-    OpenGL.BufferData(OpenGL.ARRAY_BUFFER, len(triangle), rawptr(&triangle), OpenGL.STATIC_DRAW)
+    OpenGL.BufferData(OpenGL.ARRAY_BUFFER, len(triangle) * 4, rawptr(&triangle), OpenGL.STATIC_DRAW)
 }
 
 loadProgram::proc(vertexShaderFilename : string, fragmentShaderFilename : string){
@@ -33,6 +33,18 @@ loadProgram::proc(vertexShaderFilename : string, fragmentShaderFilename : string
     OpenGL.AttachShader(program, vertexShader)
     OpenGL.AttachShader(program, fragmentShader)
     OpenGL.LinkProgram(program)
+    OpenGL.UseProgram(program)
+
+    linkStatus : i32
+    OpenGL.GetProgramiv(program, OpenGL.LINK_STATUS, &linkStatus)
+
+    infoLog : [500]u8
+    infoLogp : [^]u8 = raw_data(infoLog[:])
+
+    if linkStatus == 0 {
+        OpenGL.GetProgramInfoLog(program, 500, nil, infoLogp)
+        fmt.println(cstring(infoLogp))
+    }
 }
 
 @(private)
@@ -55,7 +67,6 @@ loadShaderStage::proc(shaderStageType : u32, filename : string) -> u32{
         OpenGL.GetShaderInfoLog(shaderStage, 500, nil, infoLogp)
         fmt.println(cstring(infoLogp))
     }
-    fmt.println(shaderStage)
     return shaderStage
 }
 
