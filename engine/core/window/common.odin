@@ -33,7 +33,7 @@ Window :: struct {
     mode:           Window_Mode,
     minimized:      bool,
     is_open:        bool,
-    event_handlers: [Event_Type]Event_Handler,
+    event_handlers: [Event_Category]Event_Handler,
     using specific: Window_Os_Specific
 }
 

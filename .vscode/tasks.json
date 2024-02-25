@@ -1,0 +1,24 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Build Everything",
+            "group": "build",
+            "windows": {
+                "command": "${workspaceFolder}/build-all.bat"
+            },
+            "linux": {
+                "command": "${workspaceFolder}/build-all.sh"
+            }
+        },
+        {
+            "label": "Run",
+            "type": "shell",
+            "windows": {
+              "command": ".\\build\\sandbox.exe"
+            },
+            "group": "none",
+        }      
+    ]
+  }
